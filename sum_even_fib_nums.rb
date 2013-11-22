@@ -36,3 +36,12 @@ end
 assert(find_even_terms_until(5), [2])
 assert(find_even_terms_until(4), [2])
 assert(find_even_terms_until(8), [2,8])
+
+
+def sum_even_terms(max_term_value)
+  even_terms = find_even_terms_until(max_term_value)
+  even_terms.inject(:+)
+end
+
+assert(sum_even_terms(5), 2)
+assert(sum_even_terms(8), 10)
