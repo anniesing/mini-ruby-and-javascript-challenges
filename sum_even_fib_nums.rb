@@ -23,3 +23,16 @@ end
 assert(get_fibonacci_sequence_with_max_term_val_of(5), [1,2,3,5])
 assert(get_fibonacci_sequence_with_max_term_val_of(4), [1,2,3])
 assert(get_fibonacci_sequence_with_max_term_val_of(6), [1,2,3,5])
+
+def find_even_terms_until(maximum_term_value)
+  entire_sequence = get_fibonacci_sequence_with_max_term_val_of(maximum_term_value)
+  even_terms = []
+  entire_sequence.each do |term|
+    even_terms << term if term % 2 == 0
+  end
+  even_terms
+end
+
+assert(find_even_terms_until(5), [2])
+assert(find_even_terms_until(4), [2])
+assert(find_even_terms_until(8), [2,8])
