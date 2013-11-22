@@ -45,3 +45,5 @@ end
 
 assert(sum_even_terms(5), 2)
 assert(sum_even_terms(8), 10)
+
+puts sum_even_terms(4000000)
