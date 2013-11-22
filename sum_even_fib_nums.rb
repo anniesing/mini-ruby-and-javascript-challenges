@@ -1,49 +1,57 @@
 # Goal: Problem 2 from ProjectEuler
 # Find the sum of the even-valued fibonacci terms whose values do not exceed four million.
 
-def get_fibonacci_sequence_with_max_term_val_of(value)
-  sequence = [1,2]
-  while sequence.last < value
-    sequence << (sequence.last + sequence[sequence.length - 2])
+class FibonacciSequence
+  
+  def initialize(max_term_value)
+    @sequence = [1,2]
+    @max_term_value = max_term_value
   end
-  if sequence.last > value
-    sequence.pop
+  
+  def next_term
+    @sequence.last + @sequence[@sequence.length - 2]
   end
-  sequence
+
+  def populated_sequence
+    while next_term <= @max_term_value
+      @sequence << next_term
+    end
+    @sequence
+  end
+
+  def even_terms
+    terms = []
+    populated_sequence.each do |term|
+      terms << term if term % 2 == 0
+    end
+    terms
+  end
+
+  def sum_even_terms
+    even_terms.inject(:+)
+  end
 end
+
 
 def assert(argument1, argument2)
-  if argument1 == argument2
-    puts true
-  else
-    puts false
-  end
+  puts (argument1 == argument2 ? true : false)
 end
 
-assert(get_fibonacci_sequence_with_max_term_val_of(5), [1,2,3,5])
-assert(get_fibonacci_sequence_with_max_term_val_of(4), [1,2,3])
-assert(get_fibonacci_sequence_with_max_term_val_of(6), [1,2,3,5])
+sequence_1 = FibonacciSequence.new(5)
+sequence_2 = FibonacciSequence.new(4)
+sequence_3 = FibonacciSequence.new(8)
+test_sequence = FibonacciSequence.new(4000000)
 
-def find_even_terms_until(maximum_term_value)
-  entire_sequence = get_fibonacci_sequence_with_max_term_val_of(maximum_term_value)
-  even_terms = []
-  entire_sequence.each do |term|
-    even_terms << term if term % 2 == 0
-  end
-  even_terms
-end
+assert(sequence_1.populated_sequence, [1,2,3,5])
+assert(sequence_2.populated_sequence, [1,2,3])
+assert(sequence_3.populated_sequence, [1,2,3,5,8])
 
-assert(find_even_terms_until(5), [2])
-assert(find_even_terms_until(4), [2])
-assert(find_even_terms_until(8), [2,8])
+assert(sequence_1.even_terms, [2])
+assert(sequence_2.even_terms, [2])
+assert(sequence_3.even_terms, [2,8])
 
+assert(sequence_1.sum_even_terms,2)
+assert(sequence_2.sum_even_terms,2)
+assert(sequence_3.sum_even_terms,10)
 
-def sum_even_terms(max_term_value)
-  even_terms = find_even_terms_until(max_term_value)
-  even_terms.inject(:+)
-end
-
-assert(sum_even_terms(5), 2)
-assert(sum_even_terms(8), 10)
-
-puts sum_even_terms(4000000)
+assert(test_sequence.sum_even_terms, 4613732)
