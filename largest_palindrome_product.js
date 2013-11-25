@@ -1,7 +1,6 @@
 // Goal: Find the largest palindrome made from the product of two 3-digit numbers.
 // Problem 4 from Project Euler
 
-
 function FindLargestPalindrome (num1, num2){
   this.num1 = num1;
   this.num2 = num2;
@@ -26,10 +25,9 @@ function FindLargestPalindrome (num1, num2){
         }
       }
     }
-    return this.palindromes.sort(function(a,b){ return a-b })[this.palindromes.length-1];
+    return this.palindromes = this.palindromes.sort(function(a,b){ return a-b });
   };
-  this.largestPalindrome = this.FindPalindromes()
-
+  this.largestPalindrome = this.FindPalindromes()[this.palindromes.length-1];
 }
 
 // var myNum = new FindLargestPalindrome(91,99);
