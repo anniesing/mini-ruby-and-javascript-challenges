@@ -48,4 +48,21 @@ end
 
 assert(all_factors_divide_evenly?(5, [1,2,3,4]), false)
 assert(all_factors_divide_evenly?(8, [1,2,4,8]), true)
+assert(all_factors_divide_evenly?(3, [1,2]), false)
 
+
+def find_smallest_multiple(num=nil, range)
+  divisors = (range).to_a
+  num ||= divisors.last
+  if all_factors_divide_evenly?(num, divisors)
+    return num
+  else
+    num += 1
+    find_smallest_multiple(num, range)
+  end
+end
+
+assert(find_smallest_multiple(1..3),6)
+assert(find_smallest_multiple(1..2),2)
+# puts find_smallest_multiple(1..10) => 2520
+# puts find_smallest_multiple(1..11) => stack level too deep
