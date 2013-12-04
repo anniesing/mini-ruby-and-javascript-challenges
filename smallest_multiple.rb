@@ -22,3 +22,16 @@
 # potential issues:
 #   - it may take too long to run this thing recursively.
 #   - running through 1-20 on every single number may take way too long also
+
+def assert(arg1, arg2)
+  puts arg1 == arg2
+end
+
+
+def divides_evenly?(dividend, divisor)
+  return dividend % divisor == 0
+end
+
+assert(divides_evenly?(4,2), true)
+assert(divides_evenly?(4,7), false)
+assert(divides_evenly?(4,1), true)
