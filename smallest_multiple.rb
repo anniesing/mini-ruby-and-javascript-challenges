@@ -23,19 +23,18 @@
 #   - it may take too long to run this thing recursively.
 #   - running through 1-20 on every single number may take way too long also
 
-stack level was too deep once it started running beyond the range of 1-10, so I am going to try to make a module in an attempt to not repeat certain operations, intead saving results in instance variables.
-
-def assert(arg1, arg2)
-  puts arg1 == arg2
-end
+# stack level was too deep once it started running beyond the range of 1-10,
+# so I am going to try to make a module in an attempt to not repeat certain operations,
+# instead saving results in instance variables.
 
 module Multiple
+  @num = 1
 
-  def divides_evenly?(dividend, divisor)
+  def self.divides_evenly?(dividend, divisor)
     return dividend % divisor == 0
   end
 
-  def all_factors_divide_evenly?(num, divisors)
+  def self.all_factors_divide_evenly?(num, divisors)
     no = []
     divisors.each do |divisor|
       if divides_evenly?(num, divisor) == false
@@ -45,30 +44,42 @@ module Multiple
     true
   end
 
-  def find_smallest_multiple(num=nil, range)
+  def self.find_smallest_multiple(range)
     divisors = (range).to_a
-    num ||= divisors.last
-    if all_factors_divide_evenly?(num, divisors)
-      return num
+    p @num
+    if all_factors_divide_evenly?(@num, divisors)
+      # p "inside!"
+      return @num
     else
-      num += 1
-      find_smallest_multiple(num, range)
+      @num += 1
+      find_smallest_multiple(range)
     end
   end
 
 end
 
 
+def assert(arg1, arg2)
+  puts arg1 == arg2
+end
+
 include Multiple
-assert(divides_evenly?(4,2), true)
-assert(divides_evenly?(4,7), false)
-assert(divides_evenly?(4,1), true)
+# assert(Multiple.divides_evenly?(4,2), true)
+# assert(Multiple.divides_evenly?(4,7), false)
+# assert(Multiple.divides_evenly?(4,1), true)
 
-assert(all_factors_divide_evenly?(5, [1,2,3,4]), false)
-assert(all_factors_divide_evenly?(8, [1,2,4,8]), true)
-assert(all_factors_divide_evenly?(3, [1,2]), false)
+# assert(Multiple.all_factors_divide_evenly?(5, [1,2,3,4]), false)
+# assert(Multiple.all_factors_divide_evenly?(8, [1,2,4,8]), true)
+# assert(Multiple.all_factors_divide_evenly?(3, [1,2]), false)
 
-assert(find_smallest_multiple(1..3),6)
-assert(find_smallest_multiple(1..2),2)
-assert(find_smallest_multiple(1..10), 2520)
+assert(Multiple.find_smallest_multiple(1..3),6)
+p Multiple.find_smallest_multiple(1..2)
+assert(Multiple.find_smallest_multiple(1..2),2)
+
+# Pooop, I didn't realize that when you make a module, the instantiated variables don't also change with each instantiation of the module
+# In line 76, @num is still set to 6 from line 75.
+# I think I'll make this a class now, so I can instantiate a new instance with the right range
+
+
+# assert(Multiple.find_smallest_multiple(1..10), 2520)
 # puts find_smallest_multiple(1..11) => stack level too deep
