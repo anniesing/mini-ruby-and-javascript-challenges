@@ -35,3 +35,17 @@ end
 assert(divides_evenly?(4,2), true)
 assert(divides_evenly?(4,7), false)
 assert(divides_evenly?(4,1), true)
+
+def all_factors_divide_evenly?(num, divisors)
+  no = []
+  divisors.each do |divisor|
+    if divides_evenly?(num, divisor) == false
+      return false
+    end
+  end
+  true
+end
+
+assert(all_factors_divide_evenly?(5, [1,2,3,4]), false)
+assert(all_factors_divide_evenly?(8, [1,2,4,8]), true)
+
