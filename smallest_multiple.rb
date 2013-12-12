@@ -5,6 +5,7 @@ class Multiple
   def initialize(range)
     @divisors = (range).to_a
     @num = @divisors.last
+    @highest_divisor = @divisors.last
   end
 
   def divides_evenly_by?(divisor)
@@ -21,11 +22,9 @@ class Multiple
   end
 
   def find_smallest_multiple
-    if all_factors_divide_evenly?
-      return @num
-    else
-      @num += 1
-      find_smallest_multiple
+    while true do
+      return @num if all_factors_divide_evenly?
+      @num += @highest_divisor
     end
   end
 
@@ -45,6 +44,10 @@ assert(test_2.find_smallest_multiple, 2)
 test_3 = Multiple.new(1..10)
 assert(test_3.find_smallest_multiple, 2520)
 
-# semi_final_test = Multiple.new(1..11)
-# puts semi_final_test.find_smallest_multiple => stack level too deep
-# issue: stack-level is still too deep. need new plan completely, must research how to avoid this problem
+
+start_time = Time.now
+semi_final_test = Multiple.new(1..20)
+puts semi_final_test.find_smallest_multiple
+end_time = Time.now
+puts "That process took #{end_time - start_time} seconds"
+
