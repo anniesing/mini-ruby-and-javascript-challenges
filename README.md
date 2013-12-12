@@ -10,4 +10,4 @@ Starting on problem number 5, I start committing the thought process running thr
 **3.** What is the largest prime factor of the number 600851475143? (done in both Ruby and Javascript. The Ruby version takes way too long -- need to refactor)<br/>
 **4.** Find the largest palindrome made from the product of two 3-digit numbers (done in JavaScript)<br/>
 **5.** Find the the smallest positive number that is evenly divisible by all of the numbers from 1 to 20? (Ruby)<br/>
-**6.** Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.<br />
+**6.** Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum. (Ruby) <br />
