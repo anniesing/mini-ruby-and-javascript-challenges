@@ -43,3 +43,6 @@ assert(sixth_prime.prime?(3), true)
 assert(sixth_prime.prime?(1), false)
 assert(sixth_prime.prime?(4), false)
 assert(sixth_prime.prime?(10), false)
+
+test = NthPrimeNumber.new(10001)
+puts test.value
