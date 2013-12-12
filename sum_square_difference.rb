@@ -4,6 +4,11 @@ class SumSquareDifference
   end
 
   def square_of_sum
+    sum = (1..@num).inject { |sum, n| sum + n }
+    sum**2
+  end
+
+  def sum_of_squares
     (1..@num).inject { |sum, n| sum + n**2 }
   end
 
@@ -21,4 +26,6 @@ end
 first_10 = SumSquareDifference.new(10)
 assert(first_10.difference, 2640)
 
-assert(first_10.square_of_sum,385)
+assert(first_10.square_of_sum, 3025)
+
+assert(first_10.sum_of_squares, 385)
