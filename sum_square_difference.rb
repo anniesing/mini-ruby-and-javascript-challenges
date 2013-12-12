@@ -1,4 +1,8 @@
 class SumSquareDifference
+
+  def difference
+    square_of_sum - sum_of_squares
+  end
 end
 
 
