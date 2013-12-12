@@ -29,3 +29,6 @@ assert(first_10.difference, 2640)
 assert(first_10.square_of_sum, 3025)
 
 assert(first_10.sum_of_squares, 385)
+
+first_100 = SumSquareDifference.new(100)
+puts first_100.difference
