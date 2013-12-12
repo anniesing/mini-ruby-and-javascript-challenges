@@ -22,7 +22,7 @@ class Multiple
   end
 
   def find_smallest_multiple
-    while true do
+    loop do
       return @num if all_factors_divide_evenly?
       @num += @highest_divisor
     end
